@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  display: flex;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.search-user {
+  margin-left: 80px;
+}
+
+.container {
+  margin: 20px;
+}
+
+.container h1 {
+  margin-bottom: 20px;
+}
+
+.container .table-users {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.container .table-users td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.container .table-users tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.container .table-users td a {
+  font-size: 15px;
+  cursor: pointer;
+  margin-right: 30px;
+  /* width: 65px; */
+
+}
+
+.option-user {
+  /* width: 65px; */
+  display: flex;
+}
+
+.add-user .add-icon {
+  border: solid 1px #000;
+  width: 20px;
+  cursor: pointer;
+  padding: 3px;
+  background-color: #ddd;
+}
+
+.edituser-text {
+  margin: 50px;
+  color: #12263f;
+  text-align: center;
+  font-weight: 550;
+  font-size: 38px;
+  letter-spacing: 2px;
+}
+
+.form-edituser {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-edituser .input-name {
+  display: grid;
+}
+
+.form-edituser input[type=text],
+.form-edituser input[type=email] {
+  /* width: 100%; */
+  padding: 12px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  width: 300px;
+}
+
+.btn-submit {
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: #808080;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.page-item {
+  margin-right: 24px;
+}
