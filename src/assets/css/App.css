@@ -40,6 +40,10 @@
   margin-bottom: 20px;
 }
 
+.editfilm-text {
+  margin-top: 20px;
+}
+
 .container .table-users {
   border-collapse: collapse;
   width: 100%;
@@ -99,7 +103,10 @@ th {
 }
 
 .form-edituser input[type=text],
-.form-edituser input[type=email] {
+.form-edituser input[type=email],
+.form-edituser input[type=number],
+.form-edituser input[type=date],
+.form-edituser input[type=datetime-local] {
   /* width: 100%; */
   padding: 12px 10px;
   margin: 8px 0;
@@ -127,4 +134,9 @@ th {
 
 .page-item {
   margin-right: 24px;
+}
+
+.add-film {
+  text-decoration: none;
+  color: #000;
 }

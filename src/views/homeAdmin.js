@@ -78,9 +78,9 @@ const HomeAdmin = () => {
                 <div class="topnav">
                     <a class="active" href="/">Users</a>
                     <a href="filmAdmin">Films</a>
-                    <a href="">Cinemas</a>
-                    <a href="">Schedules</a>
-                    <a href="">Tickets</a>
+                    <a href="cinemaAdmin">Cinemas</a>
+                    <a href="scheduleAdmin">Schedules</a>
+                    <a href="ticketAdmin">Tickets</a>
                     <input class="search-user" onKeyPress={handleKeyPress} onChange={handleSearch} type="text" placeholder="          search user ..." />
 
                 </div>
@@ -88,23 +88,37 @@ const HomeAdmin = () => {
 
             <div class="container">
                 <h1>Quản lý người dùng</h1>
-                <ul>
+                <div>
                     {searchTerm && filteredUsers.length === 0 ? (
                         <p>No users found.</p>
                     ) : (
-                        <ul>
+                        <div>
                             {filteredUsers.map((user) => (
-                                <div key={user.id}>
-                                    <li>{user.id}</li>
-                                    <li>{user.firstName}</li>
-                                    <li>{user.lastName}</li>
-                                    <li>{user.email}</li>
-                                    <li>{user.address}</li>
-                                </div>
+                                <table class="table-users">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>First name</th>
+                                            <th>last name</th>
+                                            <th>Email</th>
+                                            {/* <th>Password</th> */}
+                                            <th>Address</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody key={user.id}>
+                                        <td>{user.id}</td>
+                                        <td>{user.firstName}</td>
+                                        <td>{user.lastName}</td>
+                                        <td>{user.email}</td>
+                                        {/* <td>{user.password}</td> */}
+                                        <td>{user.address}</td>
+                                    </tbody>
+
+                                </table>
                             ))}
-                        </ul>
+                        </div>
                     )}
-                </ul>
+                </div>
                 <div>
                     <table class="table-users">
                         <thead>
