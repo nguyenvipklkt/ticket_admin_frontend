@@ -76,11 +76,11 @@ const HomeAdmin = () => {
         <div>
             <div class="header-home">
                 <div class="topnav">
-                    <a class="active" href="/">Users</a>
-                    <a href="filmAdmin">Films</a>
-                    <a href="cinemaAdmin">Cinemas</a>
-                    <a href="scheduleAdmin">Schedules</a>
-                    <a href="ticketAdmin">Tickets</a>
+                    <a class="active" href="/">Người dùng</a>
+                    <a href="filmAdmin">Phim</a>
+                    <a href="cinemaAdmin">Rạp</a>
+                    <a href="scheduleAdmin">Lịch chiếu</a>
+                    <a href="ticketAdmin">Vé</a>
                     <input class="search-user" onKeyPress={handleKeyPress} onChange={handleSearch} type="text" placeholder="          search user ..." />
 
                 </div>
@@ -90,7 +90,7 @@ const HomeAdmin = () => {
                 <h1>Quản lý người dùng</h1>
                 <div>
                     {searchTerm && filteredUsers.length === 0 ? (
-                        <p>No users found.</p>
+                        <p>Không tìm thấy người dùng.</p>
                     ) : (
                         <div>
                             {filteredUsers.map((user) => (
@@ -98,11 +98,11 @@ const HomeAdmin = () => {
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>First name</th>
-                                            <th>last name</th>
+                                            <th>Tên</th>
+                                            <th>tên đệm</th>
                                             <th>Email</th>
                                             {/* <th>Password</th> */}
-                                            <th>Address</th>
+                                            <th>Địa chỉ</th>
                                         </tr>
                                     </thead>
                                     <tbody key={user.id}>
@@ -124,12 +124,12 @@ const HomeAdmin = () => {
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>First name</th>
-                                <th>last name</th>
+                                <th>Tên</th>
+                                <th>tên đệm</th>
                                 <th>Email</th>
                                 {/* <th>Password</th> */}
-                                <th>Address</th>
-                                <th class="option">Options</th>
+                                <th>Địa chỉ</th>
+                                <th class="option">Lựa chọn</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const EditFilm = () => {
-
+    const [image, setImage] = useState('');
     const [film, setFilm] = useState({
         nameFilm: '',
         author: '',
@@ -21,17 +21,25 @@ const EditFilm = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Lấy thông tin người dùng từ API
-        axios.get(`http://localhost:4000/api/v1/film/${idFilm}`)
-            .then(response => {
-                setFilm(response.data.film); // Cập nhật dữ liệu người dùng từ phản hồi API
-                console.log(film);
-            })
-            .catch(error => {
-                console.log(error);
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const response = await axios.post('http://localhost:4000/api/v1/upload-film', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
-    }, [idFilm]);
+
+            const imagePath = response.data.fileUrl;
+            setImage(imagePath)
+            // Lưu đường dẫn ảnh vào state hoặc làm các xử lý khác tại đây
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -61,6 +69,17 @@ const EditFilm = () => {
     return (
         <div className="edituser">
             <h1 className="editfilm-text">Sửa thông tin film số {idFilm}</h1>
+            <form class="form-upload-cinema">
+                <div class="input-name">
+                    <label for="image">Ảnh : </label>
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={handleImageUpload}
+                    />
+                </div>
+                <div>{image}</div>
+            </form>
             <form onSubmit={handleSubmit} class="form-edituser">
                 <div class="input-name">
                     <label htmlFor="nameFilm">Tên Film : </label>

@@ -6,15 +6,36 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const EditCinema = () => {
-    const [cinema, setCinema] = useState({
-        idCinema: '',
-        showRoom: '',
-        logo: ''
-    });
+    const [logo, setLogo] = useState('');
 
     const navigate = useNavigate();
 
     let { idCinema } = useParams();
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('logo', file);
+
+        try {
+            const response = await axios.post('http://localhost:4000/api/v1/upload-cinema', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            const imagePath = response.data.fileUrl;
+            setLogo(imagePath)
+            // Lưu đường dẫn ảnh vào state hoặc làm các xử lý khác tại đây
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
+
+    const [cinema, setCinema] = useState({
+        showRoom: '',
+        logo: ''
+    });
 
     var handleChange = (event) => {
         const { name, value } = event.target;
@@ -44,6 +65,17 @@ const EditCinema = () => {
         <div>
             <div className="edituser">
                 <h1 className="edituser-text">Sửa thông tin rạp số {idCinema}</h1>
+                <form class="form-upload-cinema">
+                    <div class="input-name">
+                        <label for="logo">Ảnh : </label>
+                        <input
+                            type="file"
+                            name="logo"
+                            onChange={handleImageUpload}
+                        />
+                    </div>
+                    <div>{logo}</div>
+                </form>
                 <form onSubmit={handleSubmit} class="form-edituser">
                     <div class="input-name">
                         <label htmlFor="showRoom">Tên rạp : </label>

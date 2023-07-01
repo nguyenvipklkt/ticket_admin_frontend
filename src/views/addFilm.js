@@ -11,16 +11,38 @@ const AddFilm = () => {
     const [cast, setCast] = useState('');
     const [movieType, setMovieType] = useState('');
     const [time, setTime] = useState('');
-    const [releaseDate, setReleaseDate] = useState('');
     const [image, setImage] = useState('');
+    const [releaseDate, setReleaseDate] = useState('');
     const [numberBooking, setNumberBooking] = useState('');
 
     const navigate = useNavigate();
 
+
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const response = await axios.post('http://localhost:4000/api/v1/upload-film', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            const imagePath = response.data.fileUrl;
+            setImage(imagePath)
+            // Lưu đường dẫn ảnh vào state hoặc làm các xử lý khác tại đây
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+    };
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
+
             const response = await axios.post('http://localhost:4000/api/v1/create-film', {
                 nameFilm,
                 author,
@@ -32,6 +54,7 @@ const AddFilm = () => {
                 numberBooking,
             }
             );
+
             console.log(response.data);
             if (response.data.result) {
                 alert('add film successful!');
@@ -60,6 +83,16 @@ const AddFilm = () => {
     return (
         <div>
             {/* <h1 className="edituser-text">Thêm film</h1> */}
+            <form class="form-upload">
+                <div class="input-name">
+                    <label for="image">Ảnh : </label>
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={handleImageUpload}
+                    />
+                </div>
+            </form>
             <form onSubmit={handleSubmit} class="form-edituser">
                 <div>
                     <div class="input-name">
@@ -131,6 +164,7 @@ const AddFilm = () => {
                     </div>
                 </div>
             </form>
+
         </div>
     )
 }

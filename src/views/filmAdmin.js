@@ -104,20 +104,20 @@ const FilmAdmin = () => {
         <div>
             <div class="header-home">
                 <div class="topnav">
-                    <a href="/">Users</a>
-                    <a class="active" href="">Films</a>
-                    <a href="cinemaAdmin">Cinemas</a>
-                    <a href="scheduleAdmin">Schedules</a>
-                    <a href="ticketAdmin">Tickets</a>
+                    <a href="/">Người dùng</a>
+                    <a class="active" href="">Phim</a>
+                    <a href="cinemaAdmin">Rạp</a>
+                    <a href="scheduleAdmin">Lịch chiếu</a>
+                    <a href="ticketAdmin">Vé</a>
                     <input class="search-user" type="text" onKeyPress={handleKeyPress} onChange={handleSearch} placeholder="          search film ..." />
                 </div>
             </div>
             <div class='film-container container'>
-                <h1>Quản lý film </h1>
-                <div> Thêm film: <a className="add-film" href="addFilm"> <FontAwesomeIcon icon={faPlus} /></a></div>
+                <h1>Quản lý phim </h1>
+                <div> Thêm phim: <a className="add-film" href="addFilm"> <FontAwesomeIcon icon={faPlus} /></a></div>
                 <div>
                     {searchTerm && filteredFilms.length === 0 ? (
-                        <p>No films found.</p>
+                        <p>Không tìm thấy phim.</p>
                     ) : (
                         <div>
                             {filteredFilms.map((film) => (
@@ -125,14 +125,14 @@ const FilmAdmin = () => {
                                     <thead>
                                         <tr>
                                             <th>idFilm</th>
-                                            <th> Name film</th>
-                                            <th>Author</th>
-                                            <th>Cast</th>
-                                            <th>Movie type</th>
-                                            <th>Time</th>
-                                            <th>Release date</th>
-                                            <th>Image</th>
-                                            <th>Number booking</th>
+                                            <th> Tên phim</th>
+                                            <th>Tác giả</th>
+                                            <th>Diễn viên</th>
+                                            <th>thể loại</th>
+                                            <th>Thời gian</th>
+                                            <th>Ngày khởi chiếu</th>
+                                            <th>Ảnh</th>
+                                            <th>Lượt đặt</th>
                                         </tr>
                                     </thead>
                                     <tbody key={film.idFilm}>
@@ -157,15 +157,15 @@ const FilmAdmin = () => {
                         <thead>
                             <tr>
                                 <th>idFilm</th>
-                                <th> Name film</th>
-                                <th>Author</th>
-                                <th>Cast</th>
-                                <th>Movie type</th>
-                                <th>Time</th>
-                                <th>Release date</th>
-                                <th>Image</th>
-                                <th>Number booking</th>
-                                <th class="option">Options</th>
+                                <th> Tên phim</th>
+                                <th>Tác giả</th>
+                                <th>Diễn viên</th>
+                                <th>thể loại</th>
+                                <th>Thời gian</th>
+                                <th>Ngày khởi chiếu</th>
+                                <th>Ảnh</th>
+                                <th>Lượt đặt</th>
+                                <th class="option">Lựa chọn</th>
                             </tr>
                         </thead>
                         <tbody>

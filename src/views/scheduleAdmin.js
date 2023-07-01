@@ -9,7 +9,7 @@ import moment from 'moment';
 const ScheduleAdmin = () => {
     const [schedules, setSchedules] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [schedulesPerPage] = useState(6);
+    const [schedulesPerPage] = useState(7);
     const [searchTerm, setSearchTerm] = useState('');
 
 
@@ -25,6 +25,7 @@ const ScheduleAdmin = () => {
 
     useEffect(() => {
         fetchSchedules();
+        updateStatus();
     }, []);
 
     const handleDeleteSchedule = async (idSC) => {
@@ -38,6 +39,10 @@ const ScheduleAdmin = () => {
             console.error('Lỗi khi xóa lịch chiếu:', error);
             alert('Đã xảy ra lỗi khi xóa lịch chiếu');
         }
+    }
+
+    const updateStatus = async () => {
+        await axios.get('http://localhost:4000/api/v1/updateStatusSchedule')
     }
 
     const formatDateTime = (dateTime) => {
@@ -57,10 +62,7 @@ const ScheduleAdmin = () => {
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
     };
-    // Lọc danh sách người dùng dựa trên từ khóa tìm kiếm
-    // const filteredUsers = users.filter((user) =>
-    //     user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
-    // );
+
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             // Thực hiện tìm kiếm người dùng khi nhấn phím Enter
@@ -79,14 +81,24 @@ const ScheduleAdmin = () => {
         setFilteredSchedules(filteredSchedules);
     };
 
+    const getSatus = (nub) => {
+        if (nub == 0) {
+            return "Chưa hết hạn";
+        }
+        else {
+            return "Đã hết hạn";
+        }
+    }
+
+
     return (
         <div>
             <div class="topnav">
-                <a href="/">Users</a>
-                <a href="filmAdmin">Films</a>
-                <a href="cinemaAdmin">Cinemas</a>
-                <a class="active" href="scheduleAdmin">Schedules</a>
-                <a href="ticketAdmin">Tickets</a>
+                <a href="/">Người dùng</a>
+                <a href="filmAdmin">Phim</a>
+                <a href="cinemaAdmin">Rạp</a>
+                <a class="active" href="scheduleAdmin">Lịch chiếu</a>
+                <a href="ticketAdmin">Vé</a>
                 <input class="search-user" type="text" onKeyPress={handleKeyPress} onChange={handleSearch} placeholder="       search schedule ..." />
             </div>
 
@@ -94,7 +106,7 @@ const ScheduleAdmin = () => {
                 <h1>Quản lý lịch chiếu</h1>
                 <div>
                     {searchTerm && filteredSchedules.length === 0 ? (
-                        <p>No schedules found.</p>
+                        <p>Không tìm thấy lịch chiếu.</p>
                     ) : (
                         <div>
                             {filteredSchedules.map((schedule) => (
@@ -102,9 +114,10 @@ const ScheduleAdmin = () => {
                                     <thead>
                                         <tr>
                                             <th>Id lịch chiếu</th>
-                                            <th>Id Film</th>
+                                            <th>Id Phim</th>
                                             <th>Id rạp</th>
                                             <th>Ngày chiếu</th>
+                                            <th>Trạng thái</th>
                                         </tr>
                                     </thead>
                                     <tbody key={schedule.idSC}>
@@ -112,6 +125,7 @@ const ScheduleAdmin = () => {
                                         <td>{schedule.idFilm}</td>
                                         <td>{schedule.idCinema}</td>
                                         <td>{formatDateTime(schedule.showDate)}</td>
+                                        <td>{getSatus(schedule.statusSC)}</td>
                                     </tbody>
 
                                 </table>
@@ -125,10 +139,11 @@ const ScheduleAdmin = () => {
                         <thead>
                             <tr>
                                 <th>Id lịch chiếu</th>
-                                <th>Id Film</th>
+                                <th>Id Phim</th>
                                 <th>Id rạp</th>
                                 <th>Ngày chiếu</th>
-                                <th>Options</th>
+                                <th>Trạng thái</th>
+                                <th>Lựa chọn</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,6 +153,7 @@ const ScheduleAdmin = () => {
                                     <td>{schedule.idFilm}</td>
                                     <td>{schedule.idCinema}</td>
                                     <td>{formatDateTime(schedule.showDate)}</td>
+                                    <td>{getSatus(schedule.statusSC)}</td>
                                     <td class="option-user">
                                         <a class="edit-user" href={"/editSchedule/" + schedule.idSC} ><FontAwesomeIcon icon={faPenToSquare} /></a>
                                         <a class="remove-user" onClick={() => handleDeleteSchedule(schedule.idSC)}><FontAwesomeIcon icon={faXmark} /></a>

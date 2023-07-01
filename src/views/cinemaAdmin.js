@@ -78,11 +78,11 @@ const CinemaAdmin = () => {
         <div>
             <div class="header-home">
                 <div class="topnav">
-                    <a href="/">Users</a>
-                    <a href="filmAdmin">Films</a>
-                    <a class="active" href="cinemaAdmin">Cinemas</a>
-                    <a href="scheduleAdmin">Schedules</a>
-                    <a href="ticketAdmin">Tickets</a>
+                    <a href="/">Người dùng</a>
+                    <a href="filmAdmin">Phim</a>
+                    <a class="active" href="cinemaAdmin">Rạp</a>
+                    <a href="scheduleAdmin">Lịch chiếu</a>
+                    <a href="ticketAdmin">Vé</a>
                     <input class="search-user" onKeyPress={handleKeyPress} onChange={handleSearch} placeholder="          search cinema ..." />
                 </div>
             </div>
@@ -93,7 +93,7 @@ const CinemaAdmin = () => {
                 <div>
                     {
                         searchTerm && filteredCinemas.length === 0 ? (
-                            <p>No cinema not found.</p>
+                            <p>Không tìm thấy rạp.</p>
                         ) : (
                             <div>
                                 {filteredCinemas.map((cinema) => (
@@ -126,7 +126,7 @@ const CinemaAdmin = () => {
                                 <th>#</th>
                                 <th>Tên Rạp</th>
                                 <th>Logo</th>
-                                <th>Options</th>
+                                <th>Lựa chọn</th>
                             </tr>
                         </thead>
                         <tbody>
