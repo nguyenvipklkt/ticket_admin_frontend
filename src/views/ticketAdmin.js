@@ -12,6 +12,8 @@ const TicketAdmin = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [ticketsPerPage] = useState(6);
     const [searchTerm, setSearchTerm] = useState('');
+    const [totalSales, setTotalSales] = useState('');
+    const [totalTicketsSold, setTotalTicketsSold] = useState('');
 
     const fetchTicket = async () => {
         try {
@@ -30,7 +32,21 @@ const TicketAdmin = () => {
     useEffect(() => {
         fetchTicket();
         updateStatus();
+        totalTicket();
     }, [])
+
+    const totalTicket = async () => {
+        try {
+            const response = await axios.get('http://localhost:4000/api/v1/sumTicket');
+            console.log(response.data.totalSales)
+            setTotalSales(response.data.totalSales);
+            setTotalTicketsSold(response.data.totalTicketsSold);
+
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
 
     const getSatus = (nub) => {
         if (nub == 0) {
@@ -164,6 +180,10 @@ const TicketAdmin = () => {
                 totalTickets={dataTickets.length}
                 paginate={paginate}
             />
+            <div className="sumTicket">
+                <div className="totalSales">Tổng số vé đã bán : {totalSales}</div>
+                <div className="totalTicketsSold">Doanh thu đạt được : {totalTicketsSold}</div>
+            </div>
         </div>
     )
 }

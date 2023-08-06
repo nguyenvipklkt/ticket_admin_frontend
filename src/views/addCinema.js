@@ -57,7 +57,7 @@ const AddCinema = () => {
 
     return (
         <div>
-            <h1 className="edituser-text">Thêm rạp</h1>
+            <h1 className="edituser-text">Thêm phòng</h1>
             <form class="form-upload-cinema">
                 <div class="input-name">
                     <label for="logo">Ảnh : </label>
@@ -70,7 +70,7 @@ const AddCinema = () => {
             </form>
             <form onSubmit={handleSubmit} class="form-edituser">
                 <div class="input-name">
-                    <label for="showRoom">Tên rạp : </label>
+                    <label for="showRoom">Tên phòng : </label>
                     <input
                         type="text"
                         value={showRoom}
@@ -86,7 +86,7 @@ const AddCinema = () => {
                     />
                 </div>
                 <div>
-                    <button type="submit" class="btn-submit">Thêm Rạp</button>
+                    <button type="submit" class="btn-submit">Thêm phòng</button>
                 </div>
             </form>
         </div>

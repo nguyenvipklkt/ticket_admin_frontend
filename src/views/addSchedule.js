@@ -50,7 +50,7 @@ const AddSchedule = () => {
                     />
                 </div>
                 <div class="input-name">
-                    <label for="idCinema">Mã rạp : </label>
+                    <label for="idCinema">Mã phòng : </label>
                     <input
                         type="number"
                         value={idCinema}

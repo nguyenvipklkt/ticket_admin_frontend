@@ -64,7 +64,7 @@ const EditCinema = () => {
     return (
         <div>
             <div className="edituser">
-                <h1 className="edituser-text">Sửa thông tin rạp số {idCinema}</h1>
+                <h1 className="edituser-text">Sửa thông tin phòng số {idCinema}</h1>
                 <form class="form-upload-cinema">
                     <div class="input-name">
                         <label for="logo">Ảnh : </label>
@@ -78,7 +78,7 @@ const EditCinema = () => {
                 </form>
                 <form onSubmit={handleSubmit} class="form-edituser">
                     <div class="input-name">
-                        <label htmlFor="showRoom">Tên rạp : </label>
+                        <label htmlFor="showRoom">Tên phòng : </label>
                         <input type="text" name="showRoom" value={cinema.showRoom || ''} onChange={handleChange} />
                     </div>
                     <div class="input-name">

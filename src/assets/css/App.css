@@ -145,3 +145,9 @@ th {
   margin-top: 540px;
   margin-left: 320px;
 }
+
+.sumTicket {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 25px;
+}

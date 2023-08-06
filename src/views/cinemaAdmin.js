@@ -88,12 +88,12 @@ const CinemaAdmin = () => {
             </div>
 
             <div className="container">
-                <h1>Quản lý rạp</h1>
-                <div> Thêm rạp : <a className="add-film" href="addCinema"> <FontAwesomeIcon icon={faPlus} /></a></div>
+                <h1>Quản lý Phòng</h1>
+                <div> Thêm phòng : <a className="add-film" href="addCinema"> <FontAwesomeIcon icon={faPlus} /></a></div>
                 <div>
                     {
                         searchTerm && filteredCinemas.length === 0 ? (
-                            <p>Không tìm thấy rạp.</p>
+                            <p>Không tìm thấy phòng.</p>
                         ) : (
                             <div>
                                 {filteredCinemas.map((cinema) => (
@@ -101,7 +101,7 @@ const CinemaAdmin = () => {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Tên rạp</th>
+                                                <th>Tên phòng</th>
                                                 <th>Logo</th>
                                             </tr>
                                         </thead>
@@ -124,7 +124,7 @@ const CinemaAdmin = () => {
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Tên Rạp</th>
+                                <th>Tên phòng</th>
                                 <th>Logo</th>
                                 <th>Lựa chọn</th>
                             </tr>
